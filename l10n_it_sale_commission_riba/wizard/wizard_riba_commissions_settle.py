@@ -40,8 +40,13 @@ class SaleCommissionMakeSettle(models.TransientModel):
                     # rimuove le righe se la ri.ba è insoluta o nel caso sia sbf non siano
                     # passati almeno 5 giorni dalla data di scadenza del pagamento per
                     # tenersi un margine e verificare che effettivamente sia stata pagata
-                    if line.invoice.is_unsolved or line.invoice.date_due + timedelta(
-                            days=+5) > date.today():
+                    riba_mv_line = self.env['riba.distinta.move.line'].search([
+                        ('move_line_id.invoice_id', '=', line.invoice.id)
+                    ])
+                    riba_type = riba_mv_line.riba_line_id.type
+                    if line.invoice.is_unsolved or (
+                        (line.invoice.date_due + timedelta(days=+5) > date.today())
+                            and riba_type == 'sbf'):
                         agent_lines = agent_lines - line
             # fine modifica per Ri.Ba
             for company in agent_lines.mapped('company_id'):
