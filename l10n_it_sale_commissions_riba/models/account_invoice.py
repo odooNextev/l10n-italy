@@ -1,7 +1,7 @@
-from odoo import api, exceptions, fields, models, _
+from odoo import fields, models
 
 
-class InvoiceExtended(models.Model):
+class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
     no_commission = fields.Boolean(string="Non considerare provvigioni")

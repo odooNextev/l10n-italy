@@ -1,7 +1,7 @@
-from odoo import api, exceptions, fields, models, _
+from odoo import api, fields, models
 
 
-class SettlementExtended(models.Model):
+class SettlementLine(models.Model):
     _inherit = "sale.commission.settlement.line"
 
     partner = fields.Char(string="Cliente", related="invoice.partner_id.name")
