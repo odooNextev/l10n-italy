@@ -21,54 +21,13 @@ Configuration
 
 **Italiano**
 
-Nella configurazione delle Ri.Ba. è possibile specificare se si tratti di
-'Salvo buon fine' o 'Al dopo incasso', che hanno un flusso completamente diverso.
+Il modulo permette di integrare il pagamento riba con le commissioni agenti. 
+Una fattura con termini di pagamento Riba ed emissione con tipologia 
+"Salvo buon fine" verrà presa in considerazione nella generazione delle 
+provvigioni agente solamente trascorsi 5 giorni dall'effettiva scadenza.
+E' possibile inserire aggiungere "Senza commissioni" ad una fattura, in modo
+che non vengano generate commissioni agente.
 
- - Al dopo incasso: nessuna registrazione verrà effettuata automaticamente e le
-   fatture risulteranno pagate solo al momento dell'effettivo incasso.
- - Salvo buon fine: le registrazioni generate seguiranno la struttura descritta nel
-   documento http://goo.gl/jpRhJp
-
-È possibile specificare diverse configurazioni (dal menù
-*Configurazione → Pagamenti → Configurazione Ri.Ba.*). Per ognuna, in caso di
-'Salvo buon fine', è necessario specificare almeno il registro e il conto da
-utilizzare al momento dell'accettazione della distinta da parte della banca.
-Tale conto deve essere di tipo 'Crediti' (ad esempio "Ri.Ba. all'incasso",
-eventualmente da creare).
-
-La configurazione relativa alla fase di accredito, verrà usata nel momento in
-cui la banca accredita l'importo della distinta.
-È possibile utilizzare un registro creato appositamente, ad esempio "Accredito Ri.Ba.",
-e un conto chiamato ad esempio "Banche c/RIBA all'incasso", che non deve essere di tipo
-'Banca e cassa'.
-
-La configurazione relativa all'insoluto verrà utilizzata in caso di mancato pagamento
-da parte del cliente.
-Il conto può chiamarsi ad esempio "Crediti insoluti".
-
-Nel caso si vogliano gestire anche le spese per ogni scadenza con ricevuta bancaria,
-si deve configurare un prodotto di tipo servizio e collegarlo in
-*Configurazione → Impostazioni → Contabilità → Imposte → Spese di incasso Ri.Ba.*.
-
-Usage
-=====
-
-**Italiano**
-
-Per utilizzare il meccanismo delle Ri.Ba. è necessario configurare un termine
-di pagamento di tipo 'Ri.Ba.'.
-
-Per emettere una distinta è necessario andare su *Ri.Ba. → Emetti Ri.Ba.* e
-selezionare i pagamenti per i quali emettere la distinta.
-Se per il cliente è stato abilitato il raggruppamento, i pagamenti dello stesso
-cliente e con la stessa data di scadenza andranno a costituire un solo elemento
-della distinta.
-
-I possibili stati della distinta sono: *Bozza*, *Accettata*, *Accreditata*,
-*Pagata*, *Insoluta* e *Annullata*.
-Ad ogni passaggio di stato sarà possibile generare le relative registrazioni
-contabili, le quali verranno riepilogate nella scheda «Contabilità».
-Questa scheda è presente sia sulla distinta che sulle sue righe.
 
 Bug Tracker
 ===========
