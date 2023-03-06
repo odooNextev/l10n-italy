@@ -15,7 +15,6 @@
         'l10n_it_ricevute_bancarie',
     ],
     'data': [
-        'views/sale_commission_settlement_extended.xml',
         'views/invoice_no_commission.xml',
     ],
 }
