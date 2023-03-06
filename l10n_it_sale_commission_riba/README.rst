@@ -45,7 +45,7 @@ Credits
 Contributors
 ~~~~~~~~~~~~
 
-* Nextev <web@nextev.it>
+* Nextev Srl <odoo@nextev.it>
 
 
 Maintainers
