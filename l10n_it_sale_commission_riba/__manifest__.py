@@ -5,7 +5,7 @@
     'version': '12.0.1.0.0',
     'category': 'Sales',
     'website': 'https://github.com/OCA/l10n-italy',
-    'author': ['Nextev', 'Odoo Community Association (OCA)'],
+    'author': 'Nextev, Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'application': False,
     'installable': True,

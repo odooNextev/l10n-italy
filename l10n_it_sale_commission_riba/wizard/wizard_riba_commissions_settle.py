@@ -10,11 +10,12 @@ class SaleCommissionMakeSettle(models.TransientModel):
     @api.multi
     def action_settle(self):
         """
-        Esclude dal calcolo delle commissioni le fatture insolute, quelle con termini di
-        pagamento Ri.Ba salvo buon fine se non sono passati almeno 5 giorni dalla data di 
-        scadenza e quelle che hanno impostato manualmente il flag 'no_commission' 
-        (per esempio se ormai è insoluta da anni).
-        Il metodo predefinito non prevede hooks quindi è necessario riscriverlo completamente.
+        Esclude dal calcolo delle commissioni le fatture insolute, quelle con termini
+        di pagamento Ri.Ba salvo buon fine se non sono passati almeno 5 giorni dalla
+        data di scadenza e quelle che hanno impostato manualmente il flag
+        'no_commission'(per esempio se ormai è insoluta da anni).
+        Il metodo predefinito non prevede hooks quindi è necessario riscriverlo
+        completamente.
         """
         self.ensure_one()
         agent_line_obj = self.env['account.invoice.line.agent']
@@ -28,24 +29,25 @@ class SaleCommissionMakeSettle(models.TransientModel):
             date_to_agent = self._get_period_start(agent, date_to)
             # Get non settled invoices
             agent_lines = agent_line_obj.search([('invoice_date', '<=', date_to_agent),
-                                                 ('agent', '=', agent.id), ('settled', '=', False)],
+                                                 ('agent', '=', agent.id),
+                                                 ('settled', '=', False)],
                                                 order='invoice_date')
             # inizio modifica per Ri.Ba
             for line in agent_lines:
-                # rimuove le righe delle fatture che hanno impostato il flag "no_commission"
+                # rimuove righe delle fatture che hanno impostato flag "no_commission"
                 if line.invoice.no_commission:
                     agent_lines = agent_lines - line
                 # filtro su Ri.Ba
                 elif line.invoice.payment_term_id.riba:
-                    # rimuove le righe se la ri.ba è insoluta o nel caso sia sbf non siano
-                    # passati almeno 5 giorni dalla data di scadenza del pagamento per
-                    # tenersi un margine e verificare che effettivamente sia stata pagata
+                    # rimuove le righe se ri.ba è insoluta o nel caso sia sbf non siano
+                    # passati almeno 5 giorni da data di scadenza del pagamento per
+                    # tenersi un margine e verificare che sia stata pagata
                     riba_mv_line = self.env['riba.distinta.move.line'].search([
                         ('move_line_id.invoice_id', '=', line.invoice.id)
                     ])
                     riba_type = riba_mv_line.riba_line_id.type
-                    #XXX: si potrebbe creare un parametro per impostare dinamicamente il
-                    # margine di sicurezza per assumere che la riba sia stata pagata
+                    # XXX: si potrebbe creare un parametro per impostare dinamicamente
+                    # il margine di sicurezza per assumere che la riba sia stata pagata
                     if line.invoice.is_unsolved or (
                         (line.invoice.date_due + timedelta(days=+5) > date.today())
                             and riba_type == 'sbf'):
@@ -69,10 +71,20 @@ class SaleCommissionMakeSettle(models.TransientModel):
                             agent,
                             sett_from,
                         ) - timedelta(days=1)
-                        settlement = self._get_settlement(agent, company, sett_from, sett_to)
+                        settlement = self._get_settlement(
+                            agent,
+                            company,
+                            sett_from,
+                            sett_to)
                         if not settlement:
                             settlement = settlement_obj.create(
-                                self._prepare_settlement_vals(agent, company, sett_from, sett_to))
+                                self._prepare_settlement_vals(
+                                    agent,
+                                    company,
+                                    sett_from,
+                                    sett_to
+                                )
+                            )
                         settlement_ids.append(settlement.id)
                     settlement_line_obj.create({
                         'settlement': settlement.id,
