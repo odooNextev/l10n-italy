@@ -15,5 +15,6 @@
     ],
     'data': [
         'views/invoice_no_commission.xml',
+        'views/configuration_riba_view.xml',
     ],
 }
