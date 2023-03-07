@@ -33,8 +33,9 @@ che non vengano generate commissioni agente.
 
 The module allows you to integrate the riba payment with agent commissions.
 An invoice with Riba payment terms and issue with typology
-"Salvo buon fine" will be taken into account in the generation of the
-agent commissions only after 5 days from the effective expiry.
+"Salvo buon fine" will be taken into consideration in the generation of the
+agent commissions only after the days configured in the field "Safety Days"
+in ri.ba configuration.
 It is possible to add "Without commissions" to an invoice, in this way
 that no agent commissions are generated.
 
