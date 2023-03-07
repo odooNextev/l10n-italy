@@ -48,8 +48,9 @@ class SaleCommissionMakeSettle(models.TransientModel):
                     riba_type = riba_mv_line.riba_line_id.type
                     # XXX: si potrebbe creare un parametro per impostare dinamicamente
                     # il margine di sicurezza per assumere che la riba sia stata pagata
-                    if line.commission.invoice_state == 'paid' and (line.invoice.is_unsolved or (
-                        (line.invoice.date_due + timedelta(days=+5) > date.today())
+                    if line.commission.invoice_state == 'paid' and (
+                            line.invoice.is_unsolved or (
+                            (line.invoice.date_due + timedelta(days=+5) > date.today())
                             and riba_type == 'sbf')):
                         agent_lines = agent_lines - line
             # fine modifica per Ri.Ba
