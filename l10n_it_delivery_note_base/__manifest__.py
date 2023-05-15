@@ -31,4 +31,5 @@
         "views/stock_picking_transport_method.xml",
         "views/stock_picking_transport_reason.xml",
     ],
+    "post_init_hook": "create_dn_types_init_hook",
 }
