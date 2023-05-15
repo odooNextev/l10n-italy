@@ -10,7 +10,9 @@ from .delivery_note_common import StockDeliveryNoteCommon
 
 class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
     def test_complete_invoicing_sequence(self):
-        sequence = self.env.ref("l10n_it_delivery_note_base.delivery_note_sequence_ddt")
+        sequence = self.env["ir.sequence"].search(
+            [("code", "=", f"stock.delivery.note.ddt.c{self.env.company.id}")]
+        )
         current_year = datetime.today().year
         old_year = (datetime.today() - relativedelta(years=1)).year
         for sequence_year in [current_year, old_year]:
