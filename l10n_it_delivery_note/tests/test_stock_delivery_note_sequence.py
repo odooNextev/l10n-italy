@@ -1,11 +1,14 @@
 # Copyright 2022 Sergio Corato
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+import logging
 from datetime import date, datetime, timedelta
 
 from odoo.tests import Form
 from odoo.tools.date_utils import relativedelta
 
 from .delivery_note_common import StockDeliveryNoteCommon
+
+_logger = logging.getLogger(__name__)
 
 
 class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
@@ -14,6 +17,7 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
         ctx = dict(self.env.context)
         ctx["company_id"] = company_id
         self.env.context = ctx
+        _logger.info(f"Context: {str(ctx)}")
         sequence = self.env["ir.sequence"].search(
             [
                 ("code", "=", f"stock.delivery.note.ddt.c{company_id}"),
@@ -51,9 +55,11 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
                 self.desk_combination_line,
             ]
         )
+        _logger.info(f"SO company: {sale_order.company_id}")
         self.assertEqual(len(sale_order.order_line), 1)
         sale_order.action_confirm()
         picking = sale_order.picking_ids
+        _logger.info(f"picking company: {picking.company_id}")
         self.assertEqual(len(picking), 1)
         self.assertEqual(len(picking.move_lines), 1)
 
@@ -69,10 +75,12 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
         wizard = dn_form.save()
         wizard.confirm()
         delivery_note = picking.delivery_note_id
+        _logger.info(f"delivery_note company: {delivery_note.company_id}")
         delivery_note.transport_datetime = datetime.now() + timedelta(days=1, hours=3)
         delivery_note.date = date.today().replace(year=old_year)
         delivery_note.action_confirm()
-
+        _logger.info(f"delivery_note type name: {delivery_note.type_id.name}")
+        _logger.info(f"delivery_note type company: {delivery_note.type_id.company_id}")
         self.assertEqual(delivery_note.type_id.sequence_id, sequence)
         self.assertEqual(
             delivery_note.name, sequence.prefix + "%%0%sd" % sequence.padding % 50
