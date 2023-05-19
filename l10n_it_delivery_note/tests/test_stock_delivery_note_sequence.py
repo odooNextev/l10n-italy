@@ -14,10 +14,6 @@ _logger = logging.getLogger(__name__)
 class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
     def test_complete_invoicing_sequence(self):
         company_id = self.env.company.id
-        ctx = dict(self.env.context)
-        ctx["company_id"] = company_id
-        self.env.context = ctx
-        _logger.info(f"Context: {str(ctx)}")
         sequence = self.env["ir.sequence"].search(
             [
                 ("code", "=", f"stock.delivery.note.ddt.c{company_id}"),
@@ -69,7 +65,7 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
 
         dn_form = Form(
             self.env["stock.delivery.note.create.wizard"].with_context(
-                active_ids=picking.ids,
+                active_ids=picking.ids, company_id=company_id
             )
         )
         wizard = dn_form.save()
