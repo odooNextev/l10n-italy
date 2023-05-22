@@ -73,7 +73,7 @@ class StockDeliveryNoteCommon(TransactionCase):
             login="fm",
             email="accountmanager@yourcompany.com",
             groups="account.group_account_manager,base.group_partner_manager,"
-            / "base.group_system,sales_team.group_sale_manager,stock.group_stock_manager",
+            "base.group_system,sales_team.group_sale_manager,stock.group_stock_manager",
             company_ids=[(6, 0, [self.env.company.id])],
         )
         self.env.user = self.account_manager
