@@ -101,15 +101,10 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         picking.button_validate()
 
         # create delivery note with advanced mode
-        dn_form = Form(
-            self.env["stock.delivery.note.create.wizard"].with_context(
-                {"active_ids": [picking.id]}
-            )
-        )
-        dn = dn_form.save()
+        dn = picking.delivery_note_id
         dn.confirm()
 
-        self.assertTrue(picking.delivery_note_id)
-        picking.delivery_note_id.action_confirm()
-        self.assertEqual(picking.delivery_note_id.state, "confirm")
-        self.assertEqual(picking.delivery_note_id.invoice_status, "no")
+        self.assertTrue(dn)
+        dn.action_confirm()
+        self.assertEqual(dn.state, "confirm")
+        self.assertEqual(dn.invoice_status, "no")
