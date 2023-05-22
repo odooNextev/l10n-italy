@@ -74,10 +74,8 @@ class StockDeliveryNoteCommon(TransactionCase):
             email="accountmanager@yourcompany.com",
             groups="account.group_account_manager,base.group_partner_manager,"
             "base.group_system,sales_team.group_sale_manager,stock.group_stock_manager",
-            company_ids=[(6, 0, [self.env.company.id])],
+            company_ids=[(6, 0, [c.id for c in self.env["res.company"].search([])])],
         )
-        self.env.user = self.account_manager
-        self.company = self.env.company
 
         self.sender = self.env.ref("base.main_partner")
         self.recipient = self.create_partner("Mario Rossi")
