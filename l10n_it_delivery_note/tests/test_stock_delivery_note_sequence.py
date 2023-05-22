@@ -3,7 +3,7 @@
 import logging
 from datetime import date, datetime, timedelta
 
-from odoo.tests import Form
+from odoo.tests.common import users
 from odoo.tools.date_utils import relativedelta
 
 from .delivery_note_common import StockDeliveryNoteCommon
@@ -12,6 +12,7 @@ _logger = logging.getLogger(__name__)
 
 
 class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
+    @users("fm")
     def test_complete_invoicing_sequence(self):
         company_id = self.env.company.id
         sequence = self.env["ir.sequence"].search(
@@ -63,13 +64,6 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
         result = picking.button_validate()
         self.assertTrue(result)
 
-        dn_form = Form(
-            self.env["stock.delivery.note.create.wizard"].with_context(
-                active_ids=picking.ids, company_id=company_id
-            )
-        )
-        wizard = dn_form.save()
-        wizard.confirm()
         delivery_note = picking.delivery_note_id
         _logger.info(f"delivery_note company: {delivery_note.company_id}")
         delivery_note.transport_datetime = datetime.now() + timedelta(days=1, hours=3)
@@ -78,6 +72,8 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
         _logger.info(f"delivery_note type name: {delivery_note.type_id.name}")
         _logger.info(f"delivery_note type company: {delivery_note.type_id.company_id}")
         self.assertEqual(delivery_note.type_id.sequence_id, sequence)
+        sq_res = sequence.prefix + "%%0%sd" % sequence.padding % 50
+        _logger.info(f"delivery_note name vs prefix: {delivery_note.name} vs {sq_res}")
         self.assertEqual(
             delivery_note.name, sequence.prefix + "%%0%sd" % sequence.padding % 50
         )
