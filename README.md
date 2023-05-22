@@ -25,7 +25,7 @@ addon | version | maintainers | summary
 [assets_management](assets_management/) | 14.0.1.0.4 |  | Gestione Cespiti
 [fiscal_epos_print](fiscal_epos_print/) | 14.0.1.0.1 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | ePOS-Print XML Fiscal Printer Driver - Stampanti Epson compatibili: FP81II, FP90III
 [l10n_it_abicab](l10n_it_abicab/) | 14.0.1.0.2 | [![Borruso](https://github.com/Borruso.png?size=30px)](https://github.com/Borruso) | Base Bank ABI/CAB codes
-[l10n_it_account](l10n_it_account/) | 14.0.1.2.3 |  | Modulo base usato come dipendenza di altri moduli contabili
+[l10n_it_account](l10n_it_account/) | 14.0.1.3.0 |  | Modulo base usato come dipendenza di altri moduli contabili
 [l10n_it_account_stamp](l10n_it_account_stamp/) | 14.0.1.1.0 |  | Gestione automatica dell'imposta di bollo
 [l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 14.0.1.1.0 |  | Gestione natura delle aliquote IVA
 [l10n_it_appointment_code](l10n_it_appointment_code/) | 14.0.1.0.0 |  | Aggiunge la tabella dei codici carica da usare nelle dichiarazioni fiscali italiane
@@ -35,18 +35,18 @@ addon | version | maintainers | summary
 [l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 14.0.1.0.0 |  | ITA - Bolle doganali
 [l10n_it_central_journal](l10n_it_central_journal/) | 14.0.1.0.0 |  | ITA - Libro giornale
 [l10n_it_central_journal_reportlab](l10n_it_central_journal_reportlab/) | 14.0.1.0.0 |  | ITA - Libro giornale - Reportlab
-[l10n_it_declaration_of_intent](l10n_it_declaration_of_intent/) | 14.0.1.1.4 |  | Gestione dichiarazioni di intento
-[l10n_it_delivery_note](l10n_it_delivery_note/) | 14.0.1.1.1 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) | Crea, gestisce e fattura i DDT partendo dalle consegne
+[l10n_it_declaration_of_intent](l10n_it_declaration_of_intent/) | 14.0.1.1.5 |  | Gestione dichiarazioni di intento
+[l10n_it_delivery_note](l10n_it_delivery_note/) | 14.0.1.1.2 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) | Crea, gestisce e fattura i DDT partendo dalle consegne
 [l10n_it_delivery_note_base](l10n_it_delivery_note_base/) | 14.0.1.0.0 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) [![Byloth](https://github.com/Byloth.png?size=30px)](https://github.com/Byloth) | Crea e gestisce tabelle principali per gestire i DDT
 [l10n_it_delivery_note_batch](l10n_it_delivery_note_batch/) | 14.0.1.0.0 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) [![TheMule71](https://github.com/TheMule71.png?size=30px)](https://github.com/TheMule71) | Crea i DDT partendo da gruppi di prelievi
 [l10n_it_delivery_note_customer_code](l10n_it_delivery_note_customer_code/) | 14.0.1.0.0 |  | Product Customer code for delivery note
 [l10n_it_delivery_note_order_link](l10n_it_delivery_note_order_link/) | 14.0.1.0.1 | [![andreampiovesana](https://github.com/andreampiovesana.png?size=30px)](https://github.com/andreampiovesana) | Crea collegamento tra i DDT e ordine di vendita/acquisto
-[l10n_it_fatturapa](l10n_it_fatturapa/) | 14.0.2.0.1 |  | Fatture elettroniche
+[l10n_it_fatturapa](l10n_it_fatturapa/) | 14.0.2.1.0 |  | Fatture elettroniche
 [l10n_it_fatturapa_export_zip](l10n_it_fatturapa_export_zip/) | 14.0.1.0.1 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche
-[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 14.0.2.0.1 |  | Ricezione fatture elettroniche
+[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 14.0.2.1.0 |  | Ricezione fatture elettroniche
 [l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 14.0.1.0.0 |  | Modulo ponte tra ricezione fatture elettroniche e acquisti
 [l10n_it_fatturapa_in_rc](l10n_it_fatturapa_in_rc/) | 14.0.1.1.1 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Modulo ponte tra e-fattura in acquisto e inversione contabile
-[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 14.0.3.3.0 |  | Emissione fatture elettroniche
+[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 14.0.3.4.0 |  | Emissione fatture elettroniche
 [l10n_it_fatturapa_out_di](l10n_it_fatturapa_out_di/) | 14.0.1.0.2 |  | Dichiarazioni d'intento in fatturapa
 [l10n_it_fatturapa_out_rc](l10n_it_fatturapa_out_rc/) | 14.0.1.3.0 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge
 [l10n_it_fatturapa_out_sp](l10n_it_fatturapa_out_sp/) | 14.0.1.0.4 |  | Scissione pagamenti in fatturapa
@@ -81,7 +81,7 @@ addon | version | maintainers | summary
 [l10n_it_vat_statement_split_payment](l10n_it_vat_statement_split_payment/) | 14.0.1.0.2 |  | Migliora la liquidazione dell'IVA tenendo in considerazione la scissione dei pagamenti
 [l10n_it_website_portal_fiscalcode](l10n_it_website_portal_fiscalcode/) | 14.0.1.0.0 |  | Add fiscal code to details of frontend user
 [l10n_it_website_portal_ipa](l10n_it_website_portal_ipa/) | 14.0.1.0.0 |  | Aggiunge l'indice PA (IPA) tra i dettagli dell'utente nel portale.
-[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 14.0.1.1.3 |  | ITA - Ritenute d'acconto
+[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 14.0.1.1.4 |  | ITA - Ritenute d'acconto
 [l10n_it_withholding_tax_payment](l10n_it_withholding_tax_payment/) | 14.0.1.0.2 |  | Gestisce le ritenute sulle fatture e sui pagamenti
 [l10n_it_withholding_tax_reason](l10n_it_withholding_tax_reason/) | 14.0.1.0.2 |  | ITA - Causali pagamento per ritenute d'acconto
 
