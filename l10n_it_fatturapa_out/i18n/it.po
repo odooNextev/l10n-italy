@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 10:03+0000\n"
-"PO-Revision-Date: 2022-12-28 22:46+0000\n"
+"PO-Revision-Date: 2023-05-08 12:11+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -41,7 +41,7 @@ msgstr "Attivo"
 #. module: l10n_it_fatturapa_out
 #: model:res.groups,name:l10n_it_fatturapa_out.group_force_e_inv_export_state
 msgid "Allow to force e-invoice export state"
-msgstr ""
+msgstr "Consentire forzatura stato di esportazione e-fattura"
 
 #. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view
@@ -101,7 +101,7 @@ msgid "Company"
 msgstr "Azienda"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:58
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:63
 #, python-format
 msgid "Company %s TIN not set."
 msgstr "Partita IVA dell'azienda %s non impostata."
@@ -217,6 +217,7 @@ msgstr "Dati database"
 #. module: l10n_it_fatturapa_out
 #: selection:account.invoice,fatturapa_state:0
 #: selection:fatturapa.attachment.out,state:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 msgid "Delivered"
 msgstr "Consegnato"
 
@@ -252,7 +253,7 @@ msgid "E-invoice State"
 msgstr "Stato e-fattura"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:125
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:130
 #, python-format
 msgid "E-invoice attachment changed"
 msgstr "Allegato e-fattura modificato"
@@ -334,7 +335,7 @@ msgstr ""
 "%s"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:87
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:92
 #, python-format
 msgid "File %s already present."
 msgstr "File %s già presente."
@@ -367,22 +368,22 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__message_follower_ids
 msgid "Followers"
-msgstr "Follower"
+msgstr "Seguito da"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__message_channel_ids
 msgid "Followers (Channels)"
-msgstr "Follower (canali)"
+msgstr "Seguito da (canali)"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Follower (partner)"
+msgstr "Seguito da (partner)"
 
 #. module: l10n_it_fatturapa_out
 #: selection:res.company,xml_divisa_value:0
 msgid "Force euro"
-msgstr ""
+msgstr "Forza euro"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_invoice__has_pdf_invoice_print
@@ -399,7 +400,7 @@ msgstr "ID"
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out__message_unread
 msgid "If checked new messages require your attention."
-msgstr "Se selezionato, nuovi messaggi richiedono attenzione."
+msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out__message_needaction
@@ -491,7 +492,7 @@ msgstr "È un documento pubblico"
 #. module: l10n_it_fatturapa_out
 #: selection:res.company,xml_divisa_value:0
 msgid "Keep original"
-msgstr ""
+msgstr "Mantieni l'originale"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__key
@@ -612,7 +613,7 @@ msgid "Out Invoices"
 msgstr "Fatture emesse"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:51
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:56
 #, python-format
 msgid "Partner %s TIN not set."
 msgstr "Partita IVA del partner %s non impostata."
@@ -732,13 +733,18 @@ msgstr "Risultati"
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__att_name
 msgid "SdI file name"
-msgstr ""
+msgstr "Nome file SdI"
 
 #. module: l10n_it_fatturapa_out
 #: selection:fatturapa.attachment.out,state:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_search
 msgid "Sender Error"
 msgstr "Errore trasmittente"
+
+#. module: l10n_it_fatturapa_out
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__sending_user
+msgid "Sending User"
+msgstr "Utente invio"
 
 #. module: l10n_it_fatturapa_out
 #: selection:account.invoice,fatturapa_state:0
@@ -750,6 +756,11 @@ msgstr "Inviato"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__sending_date
 msgid "Sent Date"
 msgstr "Data invio"
+
+#. module: l10n_it_fatturapa_out
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
+msgid "Sent by"
+msgstr "Inviato da"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__state
@@ -820,7 +831,7 @@ msgstr "Il metodo può essere chiamato con un active_id valido"
 #. module: l10n_it_fatturapa_out
 #: sql_constraint:fatturapa.attachment.out:0
 msgid "The name of the e-invoice file must be unique!"
-msgstr "Il nome file della e-fattura deve essere univoco."
+msgstr "Il nome file della e-fattura deve essere univoco!"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out__res_id
@@ -884,7 +895,7 @@ msgid "Url"
 msgstr "URL"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:126
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:131
 #, python-format
 msgid "User %s uploaded a new e-invoice file"
 msgstr "L'utente %s ha caricato un nuovo file e-fattura"
@@ -920,7 +931,7 @@ msgstr "Cronologia comunicazioni sito web"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_res_company__xml_divisa_value
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_res_config_settings__xml_divisa_value
 msgid "XML Divisa value"
-msgstr ""
+msgstr "Valore divisa XML"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out__type
@@ -932,13 +943,13 @@ msgstr ""
 "collegamento Internet al file."
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:135
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:140
 #, python-format
 msgid "You can only delete files in 'Ready to Send' state."
 msgstr "È possibile eliminare solo file con stato «Pronto per l'invio»."
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:116
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:121
 #, python-format
 msgid "You can only reset files in 'Sender Error' state."
 msgstr "È possibile reimpostare solo file con stato «Errore trasmittente»."
@@ -949,14 +960,16 @@ msgstr "È possibile reimpostare solo file con stato «Errore trasmittente»."
 msgid "ZIP is not set for %s."
 msgstr "CAP non impostato per %s."
 
+#. module: l10n_it_fatturapa_out
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
+msgid "on"
+msgstr "il"
+
 #~ msgid "E-invoice file name"
 #~ msgstr "Nome file e-fattura"
 
 #~ msgid "History"
 #~ msgstr "Cronologia"
-
-#~ msgid "on"
-#~ msgstr "il"
 
 #~ msgid "Invoice %s has e-invoice export file yet."
 #~ msgstr "File e-fattura già presente per la fattura %s."

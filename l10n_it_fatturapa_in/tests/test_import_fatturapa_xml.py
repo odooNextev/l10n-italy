@@ -1023,6 +1023,54 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             vat_group_2_partner,
         )
 
+    def test_57_xml_import_datitrasporto_not_valid_vat(self):
+        """Import an e-bill where the DatiTrasporto has a VAT not valid.
+        The bill is created without carrier
+        and the error is logged as an inconsistency.
+        """
+        not_valid_vat = 'IE12345678910'
+        partner_model = self.env['res.partner']
+
+        def vat_partner_exists():
+            return partner_model.search([
+                ('vat', '=', not_valid_vat),
+            ], limit=1)
+        # pre-condition: No partner exists with our not valid VAT
+        self.assertFalse(vat_partner_exists())
+
+        # Act: Import the e-bill
+        res = self.run_wizard('DatiTrasportoVAT', 'IT03309970733_DatiTrasportoVAT.xml')
+        bill_model = res.get('res_model')
+        bill_domain = res.get('domain')
+        bill = self.env[bill_model].search(bill_domain)
+
+        # Assert: The partner is not created, the bill has no carrier
+        # and the VAT issue is mentioned in the inconsistencies
+        self.assertFalse(vat_partner_exists())
+        self.assertFalse(bill.carrier_id)
+        self.assertIn(
+            not_valid_vat,
+            bill.inconsistencies,
+        )
+
+    def test_55_xml_import_billing(self):
+        """
+        A user only having groups 'Billing' and 'Create contacts',
+        but not 'Billing Manager',
+        can import an Electronic Invoice.
+        """
+        user = self.billing_user
+        self.uid = user.id
+        user_model = self.env['res.users']
+        self.assertTrue(user_model.has_group('account.group_account_invoice'))
+        self.assertTrue(user_model.has_group('base.group_partner_manager'))
+        self.assertFalse(user_model.has_group('account.group_account_manager'))
+
+        res = self.run_wizard('import_billing', 'IT01234567890_FPR15.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertTrue(invoice)
+
     def test_01_xml_link(self):
         """
         E-invoice lines are created.
