@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_delivery_note_portal,stock.delivery.note.portal,l10n_it_delivery_note.model_stock_delivery_note,base.group_portal,1,0,0,0

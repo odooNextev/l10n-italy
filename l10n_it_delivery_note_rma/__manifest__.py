@@ -14,5 +14,7 @@
     ],
     "data": [
         "views/portal_templates.xml",
+        "views/portal_my_delivery_notes.xml",
+        "security/ir.model.access.csv",
     ],
 }
