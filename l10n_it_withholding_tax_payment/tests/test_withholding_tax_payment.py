@@ -44,6 +44,7 @@ class TestWithholdingTaxPayment(AccountTestInvoicingCommon):
         with invoice_form.invoice_line_ids.edit(0) as line_form:
             line_form.invoice_line_tax_wt_ids.clear()
             line_form.invoice_line_tax_wt_ids.add(wh_tax)
+        invoice.company_id = company_data["company"]
         invoice = invoice_form.save()
         return invoice
 
@@ -56,7 +57,10 @@ class TestWithholdingTaxPayment(AccountTestInvoicingCommon):
         """
         context = {"allowed_company_ids": company.ids}
         if "allowed_company_ids" in cls.env.context:
-            cls.env.with_context(**cls.env.context).write({"allowed_company_ids": []})
+            ctx = cls.env.context.copy()
+            ctx.pop("allowed_company_ids")
+            cls.env.context = ctx
+            # cls.env.with_context(**cls.env.context).write({"allowed_company_ids": []})
         cls.env.context = dict(**cls.env.context, **context)
 
     @classmethod
