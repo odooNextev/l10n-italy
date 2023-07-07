@@ -56,7 +56,7 @@ class TestWithholdingTaxPayment(AccountTestInvoicingCommon):
         """
         context = {"allowed_company_ids": company.ids}
         if "allowed_company_ids" in cls.env.context:
-            cls.env.context.pop("allowed_company_ids")
+            cls.env.with_context(**cls.env.context).write({"allowed_company_ids": []})
         cls.env.context = dict(**cls.env.context, **context)
 
     @classmethod
