@@ -17,4 +17,7 @@
         "sale",
         "l10n_it_fiscalcode",
     ],
+    "data": [
         "views/sale_order_report.xml",
+    ],
+}
