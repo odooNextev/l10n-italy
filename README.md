@@ -22,8 +22,8 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [account_invoice_report_ddt_group](account_invoice_report_ddt_group/) | 12.0.1.0.5 |  | Raggruppa le righe fattura per DDT che le ha generate, mostrando eventualmente i lotti/seriali
-[account_vat_period_end_statement](account_vat_period_end_statement/) | 12.0.1.8.0 |  | Allow to create the 'VAT Statement'.
-[assets_management](assets_management/) | 12.0.1.0.0 |  | Gestione Cespiti
+[account_vat_period_end_statement](account_vat_period_end_statement/) | 12.0.1.8.1 |  | Allow to create the 'VAT Statement'.
+[assets_management](assets_management/) | 12.0.1.0.1 |  | Gestione Cespiti
 [currency_rate_update_boi](currency_rate_update_boi/) | 12.0.1.0.0 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Update exchange rates using www.bancaditalia.it
 [fiscal_epos_print](fiscal_epos_print/) | 12.0.2.0.2 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | ePOS-Print XML Fiscal Printer Driver - Stampanti Epson compatibili: FP81II, FP90III
 [fiscal_epos_print_fiscalcode](fiscal_epos_print_fiscalcode/) | 12.0.1.1.0 |  | Consente di includere il codice fiscale negli scontrini
@@ -46,6 +46,7 @@ addon | version | maintainers | summary
 [l10n_it_corrispettivi_fatturapa_out](l10n_it_corrispettivi_fatturapa_out/) | 12.0.1.0.1 |  | Modulo per integrare ricevute e fatturazione elettronica
 [l10n_it_corrispettivi_sale](l10n_it_corrispettivi_sale/) | 12.0.1.0.3 |  | Modulo per integrare le ricevute in Odoo con gli ordini di vendita.
 [l10n_it_ddt](l10n_it_ddt/) | 12.0.1.10.1 |  | Documento di Trasporto
+[l10n_it_ddt_mrp_kit](l10n_it_ddt_mrp_kit/) | 12.0.1.0.0 |  | Fatturazione Kit dal Documento di Trasporto
 [l10n_it_delivery_note](l10n_it_delivery_note/) | 12.0.1.2.1 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) | Crea, gestisce e fattura i DDT partendo dalle consegne
 [l10n_it_delivery_note_base](l10n_it_delivery_note_base/) | 12.0.1.0.0 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) [![Byloth](https://github.com/Byloth.png?size=30px)](https://github.com/Byloth) | Crea e gestisce tabelle principali per gestire i DDT
 [l10n_it_delivery_note_batch](l10n_it_delivery_note_batch/) | 12.0.1.0.0 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) [![TheMule71](https://github.com/TheMule71.png?size=30px)](https://github.com/TheMule71) | Crea i DDT partendo da gruppi di prelievi
@@ -54,10 +55,10 @@ addon | version | maintainers | summary
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 12.0.2.0.0 |  | Italian Localization - Esigibilita' IVA
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 12.0.3.0.3 |  | Fatture elettroniche
 [l10n_it_fatturapa_export_zip](l10n_it_fatturapa_export_zip/) | 12.0.1.0.1 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche
-[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 12.0.3.1.7 |  | Ricezione fatture elettroniche
+[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 12.0.3.1.8 |  | Ricezione fatture elettroniche
 [l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 12.0.1.0.2 |  | Modulo ponte tra ricezione fatture elettroniche e acquisti
 [l10n_it_fatturapa_in_rc](l10n_it_fatturapa_in_rc/) | 12.0.1.2.0 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Modulo ponte tra e-fattura in acquisto e inversione contabile
-[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 12.0.3.2.1 |  | Emissione fatture elettroniche
+[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 12.0.3.2.2 |  | Emissione fatture elettroniche
 [l10n_it_fatturapa_out_ddt](l10n_it_fatturapa_out_ddt/) | 12.0.1.4.1 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Modulo ponte tra emissione fatture elettroniche e DDT
 [l10n_it_fatturapa_out_di](l10n_it_fatturapa_out_di/) | 12.0.1.0.1 |  | Dichiarazioni d'intento in fatturapa
 [l10n_it_fatturapa_out_oss](l10n_it_fatturapa_out_oss/) | 12.0.1.0.0 |  | OSS in fatturapa
@@ -97,7 +98,7 @@ addon | version | maintainers | summary
 [l10n_it_website_portal_corrispettivi](l10n_it_website_portal_corrispettivi/) | 12.0.1.0.0 |  | Aggiunge ricevuta o fattura come opzione nel profilo dell'utente portale
 [l10n_it_website_portal_fatturapa](l10n_it_website_portal_fatturapa/) | 12.0.1.3.0 |  | Add fatturapa fields and checks in frontend user's details
 [l10n_it_website_portal_fatturapa_sale](l10n_it_website_portal_fatturapa_sale/) | 12.0.1.1.1 |  | Controlli per la fattura elettronica nel portale vendite
-[l10n_it_website_portal_fiscalcode](l10n_it_website_portal_fiscalcode/) | 12.0.1.0.2 |  | Add fiscal code to details of frontend user
+[l10n_it_website_portal_fiscalcode](l10n_it_website_portal_fiscalcode/) | 12.0.1.0.3 |  | Add fiscal code to details of frontend user
 [l10n_it_website_portal_ipa](l10n_it_website_portal_ipa/) | 12.0.1.1.1 |  | Aggiunge l'indice PA (IPA) tra i dettagli dell'utente nel portale.
 [l10n_it_website_sale_corrispettivi](l10n_it_website_sale_corrispettivi/) | 12.0.1.0.1 |  | Aggiunge la ricevuta come opzione per l'utente e-commerce
 [l10n_it_website_sale_fatturapa](l10n_it_website_sale_fatturapa/) | 12.0.1.0.3 |  | Aggiunge i campi necessari alla fatturazione elettronica nel form del checkout
