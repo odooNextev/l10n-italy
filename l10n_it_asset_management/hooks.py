@@ -3,7 +3,7 @@
 from openupgradelib import openupgrade
 
 
-def migrate(cr):
+def pre_absorb_old_module(cr):
     if openupgrade.is_module_installed(cr, "assets_management"):
         openupgrade.update_module_names(
             cr,

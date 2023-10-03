@@ -102,6 +102,7 @@ class Asset(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         # Add depreciation if it's missing while category is set
+        ids = []
         for vals in vals_list:
             create_deps_from_categ = False
             if vals.get("category_id") and not vals.get("depreciation_ids"):
@@ -109,9 +110,10 @@ class Asset(models.Model):
             if vals.get("code"):
                 vals["code"] = " ".join(vals.get("code").split())
             asset = super().create(vals)
+            ids.append(asset.id)
             if create_deps_from_categ:
                 asset.onchange_category_id()
-        return asset
+        return self.env["asset.asset"].browse(ids)
 
     def write(self, vals):
         if vals.get("code"):
