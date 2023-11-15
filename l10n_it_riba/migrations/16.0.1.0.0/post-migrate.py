@@ -13,7 +13,7 @@ def migrate(env, version):
         NEW_MODULE_NAME,
         "migrations/16.0.1.0.0/data/noupdate.xml",
     )
-    # remove riba.distinta[.line].state refs
+    # remove riba.distinta.line.state refs
     distinta_line_state_refs = env["ir.model.data"].search(
         [
             ("module", "=", "l10n_it_riba"),
@@ -25,7 +25,7 @@ def migrate(env, version):
     distinta_line_refs = env["ir.model.data"].search(
         [
             ("module", "=", "l10n_it_riba"),
-            ("name", "like", "selection__riba_distinta__state%%"),
+            ("name", "like", "selection__riba_distinta__state__%"),
         ]
     )
     distinta_line_refs.unlink()
