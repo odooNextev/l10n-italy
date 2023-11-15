@@ -1,5 +1,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from codicefiscale import isvalid
+
 from odoo import models, fields, api
 
 
@@ -19,9 +21,7 @@ class ResPartner(models.Model):
                     # the user might insert VAT in fiscalcode field.
                     # Perform the same check as Company case
                     continue
-                if len(partner.fiscalcode) != 16:
-                    # Check fiscalcode of a person
-                    return False
+                return isvalid(partner.fiscalcode)
         return True
 
     fiscalcode = fields.Char(
