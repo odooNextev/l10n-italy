@@ -51,5 +51,4 @@
     },
     "pre_init_hook": "pre_absorb_old_module",
     "installable": True,
-    "auto_install": True,
 }

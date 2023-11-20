@@ -8,3 +8,6 @@ from openupgradelib import openupgrade
 def migrate(env, version):
     view = env.ref("l10n_it_fatturapa_in.view_fatturapa_in_attachment_form")
     view.inherit_id = False
+    env["ir.module.module"].search(
+        [("name", "=", "l10n_it_riba")], limit=1
+    ).button_immediate_install()
