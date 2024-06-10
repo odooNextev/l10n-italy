@@ -4,7 +4,7 @@
 
 from openupgradelib import openupgrade
 
-from . import hooks
+from odoo.addons.l10n_it_riba import hooks
 
 
 def migrate(cr, installed_version):
