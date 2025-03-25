@@ -27,6 +27,18 @@ class WizardExportFatturapa(models.TransientModel):
         "document associated with a deferred invoice is present",
     )
 
+    @api.model
+    def get_e_invoice_lines(self, invoice):
+        """
+        Invoice lines are not all to be translated to e-invoice lines.
+        For instance, some invoice lines will be translated
+        to DatiCassaPrevidenziale nodes.
+        """
+        return invoice.invoice_line_ids.sorted(
+            key=lambda li: (-li.sequence, li.date, li.move_name, -li.id),
+            reverse=True,
+        )
+
     def getDatiDDT(self, invoice):
         """
         Get the data for rendering DatiDDT.
@@ -48,30 +60,30 @@ class WizardExportFatturapa(models.TransientModel):
         """
         self.ensure_one()
         dati_ddt_list = list()
+
         for delivery_note in invoice.delivery_note_ids:
             ddt_data = {
                 "_delivery_note": delivery_note,
                 "NumeroDDT": delivery_note.name,
                 "DataDDT": delivery_note.date,
             }
-            e_invoice_lines = self.get_e_invoice_lines(invoice)
-
-            def _filterfn(li, delivery_note=delivery_note):
-                return li.delivery_note_id == delivery_note
-
-            e_invoice_delivery_note_lines = e_invoice_lines.filtered(_filterfn)
-            if e_invoice_delivery_note_lines:
+            if invoice.delivery_note_ids:
                 # RiferimentoNumeroLinea should not be populated
                 # if all the lines of the invoice
-                # are linked to this delivery_note,
-                # but we can't verify this condition
-                # because only note lines (not product lines)
-                # are linked to a delivery note.
+                # are linked to this delivery_note
+                e_invoice_lines = self.get_e_invoice_lines(invoice)
+                e_invoice_delivery_note_lines = e_invoice_lines.filtered(
+                    lambda eil, delivery_note=delivery_note: eil.delivery_note_id
+                    == delivery_note
+                    and eil.display_type == "product"
+                )
+
                 e_invoice_lines_list = list(e_invoice_lines)
                 lines_refs_list = [
                     e_invoice_lines_list.index(line) + 1  # NumeroLinea is 1-based
                     for line in e_invoice_delivery_note_lines
                 ]
+
                 ddt_data.update(
                     {
                         "_invoice_lines": e_invoice_delivery_note_lines,

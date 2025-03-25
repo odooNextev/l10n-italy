@@ -43,6 +43,12 @@ class TestFatturaOutDN(FatturaPACommon):
         product_form.invoice_policy = "delivery"
         cls.product = product_form.save()
 
+        product_form = Form(cls.env["product.product"])
+        product_form.name = "Test product 2"
+        product_form.detailed_type = "product"
+        product_form.invoice_policy = "delivery"
+        cls.product_2 = product_form.save()
+
         cls.delivery_note_outgoing_type = cls.env["stock.delivery.note.type"].search(
             [("code", "=", "outgoing"), ("company_id", "=", cls.env.company.id)]
         )
@@ -75,6 +81,47 @@ class TestFatturaOutDN(FatturaPACommon):
         invoice.related_documents = False
         return sales_order, delivery_note, invoice
 
+    def _create_so_dn_invoice_2(self, partner, date):
+        # Create and confirm the sale order
+        sales_order_form = Form(self.env["sale.order"])
+        sales_order_form.partner_id = partner
+        with sales_order_form.order_line.new() as line:
+            line.product_id = self.product
+            line.product_uom_qty = 2
+        with sales_order_form.order_line.new() as line:
+            line.product_id = self.product_2
+            line.product_uom_qty = 2
+        sales_order = sales_order_form.save()
+        sales_order.action_confirm()
+
+        # Validate the picking
+        picking = sales_order.picking_ids
+        picking.move_ids[0].quantity_done = 2
+        # Backorder
+        backorder_wizard_dict = picking.button_validate()
+        backorder_wiz = Form(
+            self.env[backorder_wizard_dict["res_model"]].with_context(
+                **backorder_wizard_dict["context"]
+            )
+        ).save()
+        backorder_wiz.process()
+        backorder = picking.backorder_ids
+        backorder.move_ids[0].quantity_done = 2
+        backorder.button_validate()
+
+        # Invoice the delivery note
+        delivery_note_ids = picking.delivery_note_id + backorder.delivery_note_id
+        self.assertTrue(
+            delivery_note_ids.mapped("type_id") in self.delivery_note_outgoing_type
+        )
+        delivery_note_ids.date = date
+        delivery_note_ids.action_confirm()
+        delivery_note_ids.action_invoice()
+
+        invoice = sales_order.invoice_ids
+        invoice.related_documents = False
+        return sales_order, delivery_note_ids, invoice
+
     def test_01_invoice_delivery(self):
         """
         DatiDDT is added in the Electronic Invoice
@@ -105,5 +152,37 @@ class TestFatturaOutDN(FatturaPACommon):
         self.check_content(
             xml_content,
             "IT06363391001_outDDT.xml",
+            module_name="l10n_it_fatturapa_out_dn",
+        )
+
+    def test_02_invoice_delivery(self):
+        """
+        DatiDDT is added in the Electronic Invoice
+        with reference to the lines linked to a DdT.
+        """
+        invoice_date = "2025-01-31"
+        partner = self.res_partner_fatturapa_0
+        with freeze_time(invoice_date):
+            sales_order, delivery_note_ids, invoice = self._create_so_dn_invoice_2(
+                partner, invoice_date
+            )
+            # Add to the invoice a line that is not linked with the DdT
+            invoice_form = Form(invoice)
+            with invoice_form.invoice_line_ids.new() as line:
+                line.product_id = self.product
+            invoice_form.save()
+            # we don't want to really depend on defaults for the name, here
+            invoice.name = "INV/2025/01/0001"
+            invoice.action_post()
+            wizard = self.wizard_model.with_context(active_ids=invoice.ids).create({})
+            res = wizard.exportFatturaPA()
+        attachment = self.attach_model.browse(res["res_id"])
+        self.set_e_invoice_file_id(attachment, "IT06363391001_outDDT2.xml")
+
+        # XML doc to be validated
+        xml_content = base64.decodebytes(attachment.datas)
+        self.check_content(
+            xml_content,
+            "IT06363391001_outDDT2.xml",
             module_name="l10n_it_fatturapa_out_dn",
         )
