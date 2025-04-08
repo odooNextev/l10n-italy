@@ -70,7 +70,7 @@
                 <Art73>SI</Art73>
             </DatiGeneraliDocumento>
             <DatiDDT>
-                <NumeroDDT>DDT/00003</NumeroDDT>
+                <NumeroDDT>DDT/00004</NumeroDDT>
                 <DataDDT>2025-01-31</DataDDT>
                 <RiferimentoNumeroLinea>4</RiferimentoNumeroLinea>
             </DatiDDT>
@@ -106,7 +106,7 @@
             </DettaglioLinee>
             <DettaglioLinee>
                 <NumeroLinea>3</NumeroLinea>
-                <Descrizione>Delivery Note "DDT/00003" of 31/01/2025</Descrizione>
+                <Descrizione>Delivery Note "DDT/00004" of 31/01/2025</Descrizione>
                 <Quantita>0.00</Quantita>
                 <PrezzoUnitario>0.00000</PrezzoUnitario>
                 <PrezzoTotale>0.00</PrezzoTotale>
