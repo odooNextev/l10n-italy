@@ -18,9 +18,8 @@ class L10nItDeclarationOfIntent(models.Model):
         default="out",
     )
 
-    def _fetch_valid_declaration_of_intent(
-        self, company, partner, currency, date, doi_type="out"
-    ):
+    def _fetch_valid_declaration_of_intent(self, company, partner, currency, date):
+        doi_type = self.env.context.get("doi_type", "out")
         domain = [
             ("state", "=", "active"),
             ("company_id", "=", company.id),
@@ -29,10 +28,8 @@ class L10nItDeclarationOfIntent(models.Model):
             ("start_date", "<=", date),
             ("end_date", ">=", date),
             ("remaining", ">", 0),
+            ("type", "=", doi_type)
         ]
-        if doi_type:
-            domain.append(("type", "=", doi_type))
-
         return self.search(domain, limit=1)
 
     @api.depends(
@@ -41,9 +38,10 @@ class L10nItDeclarationOfIntent(models.Model):
         "purchase_order_ids.l10n_it_edi_doi_not_yet_invoiced",
     )
     def _compute_not_yet_invoiced(self):
-        if self.type == "out":
-            return super()._compute_not_yet_invoiced()
-        for declaration in self:
+        out_doi_ids = self.filtered(lambda doi: doi.type == "out")
+        super(out_doi_ids)._compute_not_yet_invoiced()
+        other_doi_ids = self - out_doi_ids
+        for declaration in other_doi_ids:
             relevant_orders = declaration.purchase_order_ids.filtered(
                 lambda order: order.state == "purchase"
             )
