@@ -26,36 +26,13 @@ class AccountMove(models.Model):
             declaration_lines = move.invoice_line_ids.filtered(
                 # The declaration tax cannot be used with other taxes on a single line
                 # (checked in `_post`)
-                lambda line, tax=tax: line.tax_ids.ids == tax.ids
+                lambda line: line.tax_ids.ids == tax.ids
             )
             move.l10n_it_edi_doi_amount = sum(declaration_lines.mapped("price_total"))
 
     def _compute_l10n_it_edi_doi_id(self):
         for move in self:
-            if not move.l10n_it_edi_doi_use or (
-                move.state != "draft" and not move.l10n_it_edi_doi_id
-            ):
-                move.l10n_it_edi_doi_id = False
-                continue
-
-            partner = move.partner_id.commercial_partner_id
-            validity_warnings = move.l10n_it_edi_doi_id._get_validity_warnings(
-                move.company_id, partner, move.currency_id, move.l10n_it_edi_doi_date
-            )
-            if move.l10n_it_edi_doi_id and not validity_warnings:
-                continue
-
             doi_type = (
                 "out" if move.move_type in ("out_invoice", "out_refund") else "in"
             )
-
-            declaration = self.env[
-                "l10n_it_edi_doi.declaration_of_intent"
-            ]._fetch_valid_declaration_of_intent(
-                move.company_id,
-                partner,
-                move.currency_id,
-                move.l10n_it_edi_doi_date,
-                doi_type=doi_type,
-            )
-            move.l10n_it_edi_doi_id = declaration
+            super(AccountMove, move.with_context(doi_type=doi_type))._compute_l10n_it_edi_doi_id()

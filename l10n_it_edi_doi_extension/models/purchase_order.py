@@ -83,12 +83,11 @@ class PurchaseOrder(models.Model):
 
             declaration = self.env[
                 "l10n_it_edi_doi.declaration_of_intent"
-            ]._fetch_valid_declaration_of_intent(
+            ].with_context(doi_type="in")._fetch_valid_declaration_of_intent(
                 order.company_id,
                 partner,
                 order.currency_id,
-                order.l10n_it_edi_doi_date,
-                doi_type="in",
+                order.l10n_it_edi_doi_date
             )
             order.l10n_it_edi_doi_id = declaration
 
