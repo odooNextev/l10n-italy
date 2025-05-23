@@ -1,11 +1,11 @@
 **Italiano**
 
 Non è necessaria alcuna configurazione specifica per l10n_it_edi_extension: una volta installato, le sue funzionalità sono attive.
-Tuttavia, è fondamentale capire che questo modulo è un'estensione e si basa su altri moduli preesistenti e sulla configurazione generale di Odoo per la localizzazione italiana e la fatturazione elettronica. 
+Tuttavia, è fondamentale capire che questo modulo è un'estensione e si basa su altri moduli preesistenti e sulla configurazione generale di Odoo per la localizzazione italiana e la fatturazione elettronica.
 Quindi, affinché le funzionalità di questo modulo siano utilizzabili, è necessario che:
 
 1. Siano installati e configurati i moduli dipendenti:
-  - account: Il modulo base della contabilità di Odoo deve essere installato e configurato (piano dei conti, tasse, diari contabili, ecc.).
+  - account: Il modulo base della contabilità di Odoo deve essere installato e configurato (piano dei conti, tasse, giornali contabili, ecc.).
   - l10n_it_edi: Il modulo principale per la fatturazione elettronica italiana deve essere installato e correttamente configurato. Questo include:
     - Configurazione dei dati aziendali (partita IVA, codice fiscale, regime fiscale, ecc.).
     - Configurazione dei registri contabili per l'emissione delle fatture elettroniche (indicando il formato FatturaPA/Elettronica).

@@ -1,4 +1,5 @@
 #  Copyright 2024 Simone Rubino - Aion Tech
+#  Copyright 2025 Simone Rubino
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import base64
@@ -10,6 +11,12 @@ from odoo.addons.l10n_it_edi.tests.common import TestItEdi
 
 
 class TestFatturaPAXMLValidation(TestItEdi):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.module = "l10n_it_edi_extension"
+        cls.env.company.l10n_edi_it_create_partner = True
+
     def _edi_import_invoice(self, filename):
         moves = self.env["account.move"]
         path = f"l10n_it_edi_extension/tests/import_xmls/{filename}"
@@ -197,3 +204,60 @@ class TestFatturaPAXMLValidation(TestItEdi):
                             f"Field {field} of invoice {move.display_name} "
                             f"does not match",
                         )
+
+    def test_multiple_invoices(self):
+        """If an e-invoice contains multiple invoices, they are all created."""
+        # Arrange
+        self.company.l10n_it_codice_fiscale = "03533590174"
+
+        # Assert
+        self._assert_import_invoice(
+            "IT01234567890_FPR03.xml",
+            [
+                {
+                    "ref": "123",
+                },
+                {
+                    "ref": "456",
+                },
+            ],
+        )
+
+    def test_create_partner(self):
+        """If partner does not exist, it is created during import."""
+        partner_name = "SOCIETA' ALPHA SRL"
+        # pre-condition
+        partner = self.env["res.partner"].search(
+            [
+                ("name", "=", partner_name),
+            ],
+            limit=1,
+        )
+        self.assertFalse(partner)
+
+        # Act
+        invoice = self._assert_import_invoice("IT02780790107_11004.xml", [{}])
+
+        # Assert
+        partner = invoice.partner_id
+        self.assertEqual(partner.name, partner_name)
+
+    def test_avoid_create_partner(self):
+        """Partner is not created during import if the setting is disabled."""
+        self.env.company.l10n_edi_it_create_partner = False
+        partner_name = "SOCIETA' BETA SRL"
+        # pre-condition
+        partner = self.env["res.partner"].search(
+            [
+                ("name", "=", partner_name),
+            ],
+            limit=1,
+        )
+        self.assertFalse(partner)
+
+        # Act
+        invoice = self._assert_import_invoice("IT02780790107_11004.xml", [{}])
+
+        # Assert
+        partner = invoice.partner_id
+        self.assertFalse(partner)

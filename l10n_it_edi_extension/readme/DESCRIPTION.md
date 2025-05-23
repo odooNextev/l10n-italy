@@ -23,6 +23,9 @@ Le funzionalità principali incluse sono:
   - Modifica il wizard standard di esportazione massiva delle fatture elettroniche (l10n_it_edi.wizard_export_fatturapa).
   - Fa sì che il filtro per data utilizzato nel wizard si basi sulla Data Fattura (invoice_date) invece che sulla Data Contabile (date).
 
+5. Se una fattura elettronica contiene diverse fatture, tutte le fatture vengono create.
+6. Se il partner di una fattura elettronica non esiste, viene creato.
+
 \<<https://www.fatturapa.gov.it>\>
 
 
@@ -50,5 +53,8 @@ The main features included are:
 
   - Modifies the standard mass export wizard for electronic invoices (l10n_it_edi.wizard_export_fatturapa).
   - Makes the date filter used in the wizard based on Invoice Date (invoice_date) instead of Accounting Date (date).
+
+5. If an e-invoice contains multiple invoices, all the corresponding invoices are created.
+6. If the partner of an e-invoice does not exist, it is created.
 
 \<<https://www.fatturapa.gov.it>\>
