@@ -25,6 +25,28 @@
                 <field name="l10n_it_edi_admin_ref" optional="hide" />
             </xpath>
             <xpath
+                expr="//field[@name='invoice_line_ids']/form//field[@name='analytic_distribution']"
+                position="after"
+            >
+                <label
+                    for="l10n_it_edi_other_data_ids"
+                    string="Other Management Data"
+                    invisible="parent.country_code != 'IT'"
+                />
+                <field
+                    name="l10n_it_edi_other_data_ids"
+                    invisible="parent.country_code != 'IT'"
+                    nolabel="1"
+                >
+                    <list editable="bottom">
+                        <field name="name" string="Data Type" />
+                        <field name="text_ref" string="Text Ref." optional="show" />
+                        <field name="num_ref" string="Number Ref." optional="show" />
+                        <field name="date_ref" string="Date Ref." optional="show" />
+                    </list>
+                </field>
+            </xpath>
+            <xpath
                 expr="//page[@name='electronic_invoicing']//field[@name='l10n_it_edi_attachment_id']"
                 position="attributes"
             >
