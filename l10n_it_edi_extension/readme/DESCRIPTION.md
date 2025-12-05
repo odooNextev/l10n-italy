@@ -21,6 +21,7 @@ Le funzionalità principali incluse sono:
      - `<RiferimentoNumero>`: riferimento numerico (fino a 8 decimali)
      - `<RiferimentoData>`: riferimento data
      - Per aggiungere questi dati, aprire la riga fattura e compilare la sezione "Altri Dati Gestionali".
+   - `<IndirizzoResa>`: rappresenta l'indirizzo di consegna della merce.
 
 3. Miglioramenti nell'import delle fatture XML:
 
@@ -108,6 +109,7 @@ The main features included are:
      - `<RiferimentoNumero>`: numeric reference (up to 8 decimal places)
      - `<RiferimentoData>`: date reference
      - To add this data, open the invoice line and fill in the "Other Management Data" section.
+   - `<IndirizzoResa>`: represents the shipping address of the goods.
 
 3. Improvements in XML invoice import:
 
