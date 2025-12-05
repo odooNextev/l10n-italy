@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- List View -->
+    <record id="l10n_it_edi_move_line_other_data_list_view" model="ir.ui.view">
+        <field name="name">l10n_it_edi.move.line.other.data.list</field>
+        <field name="model">l10n_it_edi.move.line.other.data</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="move_line_id" column_invisible="1" />
+                <field name="name" string="Tipo Dato" />
+                <field name="text_ref" string="Rif. Testo" optional="show" />
+                <field name="num_ref" string="Rif. Numero" optional="show" />
+                <field name="date_ref" string="Rif. Data" optional="show" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="l10n_it_edi_move_line_other_data_form_view" model="ir.ui.view">
+        <field name="name">l10n_it_edi.move.line.other.data.form</field>
+        <field name="model">l10n_it_edi.move.line.other.data</field>
+        <field name="arch" type="xml">
+            <form string="Altri Dati Gestionali">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="move_line_id" readonly="1" />
+                            <field
+                                name="name"
+                                string="Tipo Dato"
+                                placeholder="Max 10 caratteri"
+                            />
+                        </group>
+                        <group>
+                            <field
+                                name="text_ref"
+                                string="Riferimento Testo"
+                                placeholder="Max 60 caratteri"
+                            />
+                            <field name="num_ref" string="Riferimento Numero" />
+                            <field name="date_ref" string="Riferimento Data" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
