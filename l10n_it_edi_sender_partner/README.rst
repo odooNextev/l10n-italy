@@ -70,7 +70,7 @@ Authors
 Contributors
 ------------
 
--  Nextev Srl <https://www.nextev.it>
+- Nextev Srl <https://www.nextev.it>
 
 Maintainers
 -----------
