@@ -211,15 +211,16 @@ class AccountMoveInherit(models.Model):
             # Build other_data list from l10n_it_edi_other_data_ids
             other_data_list = []
             for other_data in line.l10n_it_edi_other_data_ids:
+                # Format date_ref as ISO string if present
+                date_ref_str = False
+                if other_data.date_ref:
+                    date_ref_str = other_data.date_ref.strftime("%Y-%m-%d")
+
                 other_data_dict = {
                     "tipo_dato": other_data.name,
                     "riferimento_testo": other_data.text_ref or False,
                     "riferimento_numero": other_data.num_ref or False,
-                    "riferimento_data": (
-                        other_data.date_ref.strftime("%Y-%m-%d")
-                        if other_data.date_ref
-                        else False
-                    ),
+                    "riferimento_data": date_ref_str,
                 }
                 other_data_list.append(other_data_dict)
 
