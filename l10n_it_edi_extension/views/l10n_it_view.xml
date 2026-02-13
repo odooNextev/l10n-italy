@@ -26,7 +26,7 @@
                 <field
                     name="l10n_it_edi_other_data_ids"
                     widget="many2many_tags"
-                    string="Altri Dati"
+                    string="Other Data"
                     readonly="1"
                     column_invisible="parent.country_code != 'IT'"
                 />
@@ -35,7 +35,7 @@
                     type="object"
                     class="btn btn-link p-0 m-0"
                     icon="fa-pencil"
-                    title="Modifica Altri Dati Gestionali"
+                    title="Edit other Data"
                     column_invisible="parent.country_code != 'IT'"
                     width="1"
                 />
