@@ -27,10 +27,12 @@ class MoveLineOtherData(models.Model):
         string="Data Type",
         required=True,
         help="TipoDato: Type of additional data (max 10 characters)",
+        size=10,
     )
     text_ref = fields.Char(
         string="Text Reference",
         help="RiferimentoTesto: Text reference (max 60 characters)",
+        size=60,
     )
     num_ref = fields.Float(
         string="Number Reference",
@@ -53,25 +55,6 @@ class MoveLineOtherData(models.Model):
             if record.date_ref:
                 parts.append(str(record.date_ref))
             record.display_name = ": ".join(parts)
-
-    @api.constrains("name")
-    def _check_name_length(self):
-        for record in self:
-            if record.name and len(record.name) > 10:
-                raise ValidationError(
-                    _("Data Type (TipoDato) must not exceed 10 characters.")
-                )
-
-    @api.constrains("text_ref")
-    def _check_text_ref_length(self):
-        for record in self:
-            if record.text_ref and len(record.text_ref) > 60:
-                raise ValidationError(
-                    _(
-                        "Text Reference (RiferimentoTesto) "
-                        "must not exceed 60 characters."
-                    )
-                )
 
     @api.constrains("name", "text_ref", "num_ref", "date_ref")
     def _check_at_least_one_ref(self):
